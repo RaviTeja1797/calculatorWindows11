@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        <link rel="stylesheet" href="calculatorWindows11.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap">
+        <script src="https://kit.fontawesome.com/db17915396.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+    </head>
+    <body>
+        <div class="calculator-container">
+            <div class="calculator-functional-block">
+                <nav class="nav-bar">
+                    <div class="nav-bar-left-part-container">
+                        <div class="menu-icon-container">
+                            <i class="fa-solid fa-bars menu-icon" id="menuIcon"></i>
+                        </div>
+                        <h1 class="calculator-type-heading" id="calculatorTypeHeading">
+                            Standard
+                        </h1>
+                        <div class="picture-in-picture-mode-icon-container">
+                            <i class="fa-solid fa-minimize picture-in-picture-icon" id="pipIcon"></i>
+                            <!-- <p class="material-symbols-outlined picture-in-picture-icon">
+                                pip_exit
+                            </p> -->
+                        </div>
+                    </div>
+                    <div class="history-icon-container">
+                        <i class="fa-solid fa-clock-rotate-left history-icon" id="historyIcon"></i>
+                    </div>
+                </nav>
+                <div class="answer-container">
+                    <p class="answer-after-calculation" id="calculatedAnswer"></p>
+                    <p type="text" class="entered-numbers" id="userInput">0</p>
+                    <div class="special-functions-buttons-container">
+                        <button class="special-function-button" id="mcButton">MC</button>
+                        <button class="special-function-button" id="mrButton">MR</button>
+                        <button class="special-function-button" id="mPlusButton">M+</button>
+                        <button class="special-function-button" id="mMinusButton">M-</button>
+                        <button class="special-function-button" id="msButton">MS</button>
+                    </div>
+                </div>
+                <div class="number-buttons-container" id="buttonContainer">
+                    <div class="numbers-block">
+                        <button class="number-button" id="percentButton">%</button>
+                        <button class="number-button" id="ceButton">CE</button>
+                        <button class="number-button" id="cButton">C</button>
+                        <button class="number-button" id="rightClearButton"><i class="fa-solid fa-delete-left"></i></button>
+                    </div>
+                    <div class="numbers-block">
+                        <button class="number-button" id="oneDivideXbutton">1/x</button>
+                        <button class="number-button" id="xSquareButton">x<sup>2</sup></button>
+                        <button class="number-button" id="twoRootXButton"><sup>2</sup>&radic;x</button>
+                        <button class="number-button" id="divideButton" onclick="whenOperatorClicked(event)">/</button>
+                    </div>
+                    <div class="numbers-block">
+                        <button class="number-button" onclick="inputLoger(event)" id="numSeven">7</button>
+                        <button class="number-button" onclick="inputLoger(event)" id="numEight">8</button>
+                        <button class="number-button" onclick="inputLoger(event)" id="numNine">9</button>
+                        <button class="number-button" id="multiplyButton" onclick="whenOperatorClicked(event)">*</button>
+                    </div>
+                    <div class="numbers-block">
+                        <button class="number-button" onclick="inputLoger(event)" id="numFour">4</button>
+                        <button class="number-button" onclick="inputLoger(event)" id="numFive">5</button>
+                        <button class="number-button" onclick="inputLoger(event)" id="numSix">6</button>
+                        <button class="number-button" id="subtractButton" onclick="whenOperatorClicked(event)">-</button>
+                    </div>
+                    <div class="numbers-block">
+                        <button class="number-button" onclick="inputLoger(event)" id="numOne">1</button>
+                        <button class="number-button" onclick="inputLoger(event)" id='numTwo'>2</button>
+                        <button class="number-button" onclick="inputLoger(event)" id="numThree">3</button>
+                        <button class="number-button" id="additionButton" onclick="whenOperatorClicked(event)">+</button>
+                    </div>
+                    <div class="numbers-block bottom-number-block">
+                        <button class="number-button" id="plusMinusButton"><sup>+</sup>/<span>-</span></button>
+                        <button class="number-button" onclick="inputLoger(event)" id="numZero">0</button>
+                        <button class="number-button" id="decimalPoint" onclick="whenOperatorClicked(event)">.</button>
+                        <button class="number-button" id="equalButton">=</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class='History-Memory-container'>
+                <div>
+                    <div class="history-menu-container">
+                        <div>
+                        <button class="history" id="historyButton">History</button>
+                        <div class="selector" id="historyIndicatorButton"></div>
+                        </div>
+                        <div>
+                        <button class="memory" id="memoryButton">Memory</button>
+                        <div class='selector display-none' id="memoryIndicatorButton"></div>
+                        </div>
+                    </div>
+
+                    <div class="calculation-history-area" id="calculatorHistoryArea">
+                        <p class="no-history-error" id="noHistoryError">There is no History yet.</p>
+                    </div>
+                    <div class="calculation-memory-area display-none" id="calculatorMemoryArea">
+                        <p class="no-memory-error" id="noMemoryError">There is no Memory yet.</p>
+                    </div>
+                </div>
+                <div class="delete-button-container" id="deleteButtonContainer">
+                    <i class="fa-solid fa-trash-can delete-icon" id="deleteIcon"></i>
+                </div>
+            </div>
+        </div>
+        <!-- <script src="calculator.js"></script> -->
+        <script src="calculatorWindows11.js"></script>
+    </body>
+</html>
