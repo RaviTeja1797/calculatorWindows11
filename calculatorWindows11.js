@@ -479,6 +479,33 @@ percentButtonEl.addEventListener('click', whenPercentButtonClicked)
 
 oneDivideXbuttonEl.addEventListener('click', whenOneDivideXButtonClicked);
 
+
+
+//This function toggles between the history and memory container on Large devices
+function historyMemoryTogglerFunction(event){
+    //if history button is clicked
+    if(event.target.id === "historyButton"){
+        memoryIndicatorButtonEl.classList.add('display-none');
+        calculatorMemoryAreaEl.classList.add('display-none');
+        historyIndicatorButtonEl.classList.remove('display-none');
+        calculatorHistoryAreaEl.classList.remove('display-none');
+
+    }
+    //if Memory button is clicked
+    else if(event.target.id === 'memoryButton'){
+        historyIndicatorButtonEl.classList.add('display-none');
+        calculatorHistoryAreaEl.classList.add('display-none');
+        memoryIndicatorButtonEl.classList.remove('display-none');
+        calculatorMemoryAreaEl.classList.remove('display-none');
+    }
+}
+//Added eventlistener functions
+historyButtonEl.addEventListener("click", historyMemoryTogglerFunction);
+memoryButtonEl.addEventListener("click", historyMemoryTogglerFunction);
+
+
+
+
 /* calculatorObject.expression='pow(4,2)'
 calculatorObject.showExpressionOnUserInput()
 calculatorObject.calculateExpression()
